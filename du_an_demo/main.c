@@ -112,7 +112,7 @@ void analyze(struct Student* students, const int numberOfStudents) {
 			strcpy_s(selectedProvince,100, provinces[i]);
 			count = 1;
 		} else if (strcmp(selectedProvince, provinces[i]) != 0) {
-			printf("\n co %d sinh vien o %s", count, selectedProvince);
+			printf("co %d sinh vien o %s\n", count, selectedProvince);
 			//update "selectedProvince"
 			strcpy_s(selectedProvince, 100, provinces[i]);
 			count =1;
@@ -121,7 +121,54 @@ void analyze(struct Student* students, const int numberOfStudents) {
 		}
 	}
 	if (numberOfStudents > 0) {
-		printf("\nco %d sinh vien o %s\n", count, selectedProvince);
+		printf("co %d sinh vien o %s\n", count, selectedProvince);
+	}
+}
+void find(struct Student* students, int numberOfStudents) {
+	char province[100];
+	printf("\nNhap province: "); gets(province);
+	while (1){
+		if (gets(province) != NULL) break;
+	}
+	float min, max;
+	printf("\nNhap min(diem) : "); scanf_s("%f", &min);
+	printf("\nNhap max(diem) : "); scanf_s("%f", &max);
+	//tim kiem
+	struct Student* result = malloc(sizeof(struct Student) * numberOfStudents); // bien result
+	int i, j=0;
+	for (i=0; i< numberOfStudents; i++) {
+		struct Student* selectedStudent = (students + i);
+		float totalMark = selectedStudent->mark->math + selectedStudent->mark->physics
+			+ selectedStudent->mark->chemistry;
+		if (totalMark >=min && totalMark <=max && strcmp(selectedStudent->noisinh, province) == 0) {
+			*(result + i) = *selectedStudent;
+			j++; // so sinh vien tim duoc
+		}
+	}
+	if (j==0) {
+		printf("\nKhong tim duoc sinh vien");
+	}
+	else {
+		printResult(result, j);
+	}
+}
+void save(struct Student* students, int numberOfStudents) {
+	char fileName[250] = "";
+	printf("\nNhap ten file: ");
+	gets(fileName);
+	while (1){
+		if(gets(fileName) != NULL) break;
+	}
+	// FILE* file = fopen(fileName, "wb"); //wb= write binary
+	FILE* file;
+	if (file = fopen(fileName, "wb") == NULL) {
+		printf("Cannot open file for saving");
+	}
+	else{
+		//luu sinh vien vao file
+		fwrite(students, sizeof(struct Student), numberOfStudents, fileName);
+		fclose(fileName);
+		printf("Data is saved successfully \n");
 	}
 }
 
@@ -163,10 +210,12 @@ int main() {
 			}
 			break;
 		case '4':
-			printf("Ban chon Find\n");
+			//tim kiem ten va noi sinh
+			find(students, numberOfStudents);
 			break;
 		case '5':
-			printf("Ban chon Save\n");
+			//luu sinh vien ra file
+			save(students, numberOfStudents);
 			break;
 		case '6':
 			printf("Ban chon Open\n");
@@ -174,7 +223,7 @@ int main() {
 		default:
 			break;
 		}	
-		printf("Ban co muon tiep tuc khong ?\n");
+		printf("\nBan co muon tiep tuc khong ?\n");
 		printf("Yes, I do (y or Y)\n");
 		printf("No, I don't (n or N)\n");
 		printf("Xoa man hinh (c or C)\n");
