@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
 		printf("\n2. Hien thi thong tin hoc vien");
 		printf("\n3. Tim thong tin sinh vien theo ma sinh vien");
 		printf("\n4. Hien thi danh sach theo diem tu cao xuong thap");
+		printf("\n5. Tinh diem trung binh, xem loai hoc luc");
 		printf("\n0. Thoat");
 		printf("\n---------------------");
 		printf("\nBan hay chon 1 cong viec: "); scanf("%d", &chon);
@@ -40,6 +41,12 @@ int main(int argc, char *argv[]) {
 				system("cls");
 				printf("\n4.Hien thi danh sach sinh vien theo thu tu giam dan");
 				sapxep(ds, n);
+				getch();
+				break;
+			case 5:
+				system("cls");
+				printf("\n5. Tinh diem trung binh, xem loai hoc luc");
+				rank(ds, n);
 		}
 	}while (chon != 0);
 	return 0;
