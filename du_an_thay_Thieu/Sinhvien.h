@@ -16,8 +16,5 @@ typedef struct
  void inDSSV(SV *d, int n);
  int timSV(SV *d, int n);
  void sapxep(SV *d, int n);
-<<<<<<< HEAD
  void lop(SV *d, int n);
-=======
  void rank(SV *d, int n);
->>>>>>> 05513be4db04cf8ea37014fe0c1a83d95b000cc2

@@ -83,7 +83,6 @@ void sapxep(SV *d, int n)
 	}
 	inDSSV(d, n);
 }
-<<<<<<< HEAD
 void lop(SV *d, int n)
 {
 	int i, j;
@@ -98,13 +97,24 @@ void lop(SV *d, int n)
 			} 
 		}
 	}
-	inDSSV(d, n);
+	int count = 1;
+	char chonlop[10];
+	strcpy(chonlop, d[0].lop);
+	printf("\nSap xep hoc sinh theo lop: \n\n-------Lop: %s -----------------------------------------\n", d[0].lop);
+	for (i=0; i<n; i++) {
+		if (strcmp(chonlop, d[i].lop) == 0) {
+			printf("\n-----Sinh vien %d------", count);
+			inSV(d[i]);
+			count++;
+		} else {
+			printf("\n\n-------Lop: %s -----------------------------------------\n", d[i].lop);
+			strcpy(chonlop, d[i].lop);
+			printf("\n-----Sinh vien 1------");
+			inSV(d[i]);
+			count = 2;
+		}
+	}
 }
-
-
-
-
-=======
 void rank(SV *d, int n){
 	int i;
 	float tb=0;
@@ -120,5 +130,4 @@ void rank(SV *d, int n){
 		printf("\nHoc luc cua sinh vien %d la: %s\n",i+1,hocluc);
 	}
 }
->>>>>>> 05513be4db04cf8ea37014fe0c1a83d95b000cc2
 
