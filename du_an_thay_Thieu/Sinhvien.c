@@ -83,6 +83,7 @@ void sapxep(SV *d, int n)
 	}
 	inDSSV(d, n);
 }
+<<<<<<< HEAD
 void lop(SV *d, int n)
 {
 	int i, j;
@@ -103,4 +104,21 @@ void lop(SV *d, int n)
 
 
 
+=======
+void rank(SV *d, int n){
+	int i;
+	float tb=0;
+	char hocluc[10];
+	for(i=0;i<n;i++){
+		tb = (d[i].toan + d[i].ly + d[i].hoa)/3;
+		printf("\nDiem trung binh cua sinh vien %d la: %f",i+1,tb);
+		if (tb > 9) strcpy(hocluc, "Xuat xac");
+		else if (tb > 8) strcpy(hocluc, "Gioi");
+		else if (tb > 7) strcpy(hocluc, "Kha");
+		else if (tb > 6) strcpy(hocluc, "Trung binh");
+		else if (tb < 6) strcpy(hocluc, "Kem");
+		printf("\nHoc luc cua sinh vien %d la: %s\n",i+1,hocluc);
+	}
+}
+>>>>>>> 05513be4db04cf8ea37014fe0c1a83d95b000cc2
 
