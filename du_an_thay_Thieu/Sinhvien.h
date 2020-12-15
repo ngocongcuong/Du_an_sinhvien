@@ -16,3 +16,4 @@ typedef struct
  void inDSSV(SV *d, int n);
  int timSV(SV *d, int n);
  void sapxep(SV *d, int n);
+ void lop(SV *d, int n);

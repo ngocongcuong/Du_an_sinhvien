@@ -83,6 +83,22 @@ void sapxep(SV *d, int n)
 	}
 	inDSSV(d, n);
 }
+void lop(SV *d, int n)
+{
+	int i, j;
+	SV temp;
+	for (i=0; i<n-1; i++) {
+		for (j=i+1; j<n; j++) {
+			if (strcmp(d[i].lop, d[j].lop) > 0) {
+				//doi vi tri
+				temp = d[i];
+				d[i] = d[j];
+				d[j] = temp;
+			} 
+		}
+	}
+	inDSSV(d, n);
+}
 
 
 
