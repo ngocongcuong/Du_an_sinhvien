@@ -47,13 +47,13 @@ int main(int argc, char *argv[]) {
 				system("cls");
 				printf("\n5.Hien thi sinh vien theo lop");
 				lop(ds, n);
-				break;
 				getch();
 				break;
 			case 6:
 				system("cls");
 				printf("\n5. Tinh diem trung binh, xem loai hoc luc");
 				rank(ds, n);
+				break;
 		}
 	}while (chon != 0);
 	return 0;
