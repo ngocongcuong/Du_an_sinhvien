@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dự án sinh viên</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="bootstrap2/css/bootstrap.min.css">
+  	<style type="text/css">
+  		.cach{
+  			height: 20px;
+  		}
+		td{
+			padding-left: 6px;
+			padding-right: 6px;
+			text-align: center;
+		}
+		.ac1{
+			color: red;
+		}
+  	</style>
+</head>
+<body onload="duansv2()">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-6"><h2>Quản lý sinh viên</h2></div>
+			<div class="col-md-2"></div>
+			
+		</div>
+		<div class="cach"></div>
+		<div class="row">
+			<div class="col-md-3" style="border: 1px solid #848484">
+				<div class="form-group"><h4>Nhập thông tin</h4></div>
+				<span class="ac1" id="canhbao"></span>
+				<div class="form-group">
+					<span>Họ và tên:</span>
+					<input type="text" class="form-control" id="ten" placeholder="nhập họ và tên" name="">
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-3">Lớp:</div>
+						<div class="col-9"><input type="text" id="lop" class="form-control" placeholder="nhập lớp" name=""></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<span>Tên trường:</span>
+					<input type="text" class="form-control" id="truong" placeholder="nhập tên trường" name="">
+				</div>
+				<div class="form-group">
+					<span>Ngày sinh:</span>
+					<input type="date" id="ngaysinh" class="form-control" name="">
+				</div>
+				<div class="form-group">
+					<span>Địa chỉ:</span>
+					<input type="text" id="diachi" class="form-control" placeholder="nhập địa chỉ" name="">
+				</div>
+				<div class="form-group">
+					<span>Số điện thoại:</span>
+					<input type="number" id="sdt" class="form-control" placeholder="nhập số điện thoại" name="">
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-4">Giới tính:</div>
+						<div class="col">
+							<input type="radio" value="Nam" id="nam" name="gioitinh"> Nam
+							<input type="radio" value="Nữ" id="nu" name="gioitinh">  Nữ
+							<input type="radio" value="Khác" id="khac" name="gioitinh"> Khác
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-5"></div>
+						<div class="col-7"><button onclick="duansv1()" class="btn btn-danger">Lưu thông tin</button></div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-1"></div>
+			<div id="acc1" class="col-md-8" style="border: 1px solid #848484">
+				<h4>Danh sách sinh viên</h4>
+				<div>
+					<table id="abc" cellspacing="0" border="1px">
+						
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)"></script> 
+<script type="text/javascript" src="js.js"></script>
+</body>
+</html>
