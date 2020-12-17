@@ -6,9 +6,10 @@ typedef struct
 	char hoten[50];
 	int gt; 
 	Date ns;
+	char hocluc[10];
 	char noisinh[50];
 	char lop[10];
-	float toan, ly, hoa;
+	float toan, ly, hoa,tb;
 } SV;
  void nhapSV(SV *d);
  void inSV(SV d);

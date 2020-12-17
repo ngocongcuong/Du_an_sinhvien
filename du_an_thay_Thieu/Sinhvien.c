@@ -4,20 +4,21 @@
 void nhapSV(SV *d)
 {
 	fflush(stdin);
-	printf("\nNhap ma sinh vien: "); gets(d->masv);
-	printf("\nNhap ho ten sinh vien: "); gets(d->hoten);
+	printf("Nhap ma sinh vien: "); gets(d->masv);
+	printf("Nhap ho ten sinh vien: "); gets(d->hoten);
 	do {
-		printf("\nGioi tinh: "); scanf("%d",&d->gt);
+		printf("Gioi tinh: "); scanf("%d",&d->gt);
 		if(d->gt<0||d->gt>2)
 		printf("\nGioi tinh ko hop le, moi nhap lai");
 	}while (d->gt < 0 || d->gt >2);
 	inputDate(&d->ns);
 	fflush(stdin);
-	printf("\nNhap noi sinh: "); gets(d->noisinh);
-	printf("\nNhap lop: "); gets(d->lop);
-	printf("\nNhap diem mon toan: "); scanf("%f", &d->toan);
-	printf("\nNhap diem mon ly: "); scanf("%f", &d->ly);
-	printf("\nNhap diem mon hoa: "); scanf("%f", &d->hoa);
+	printf("Nhap noi sinh: "); gets(d->noisinh);
+	printf("Nhap lop: "); gets(d->lop);
+	printf("Nhap diem mon toan: "); scanf("%f", &d->toan);
+	printf("Nhap diem mon ly: "); scanf("%f", &d->ly);
+	printf("Nhap diem mon hoa: "); scanf("%f", &d->hoa);
+	d->tb=(d->toan + d->ly + d->hoa)/3;
 }
 void inSV(SV d)
 {
@@ -27,7 +28,14 @@ void inSV(SV d)
 	printf("\nNgay sinh: "); outputDate(d.ns);
 	printf("\nNoi sinh: %s", d.noisinh);
 	printf("\nLop: %s", d.lop);
-	printf("\nDiem: | Toan= %1.2f | Ly= %1.2f | Hoa= %1.2f |\n", d.toan, d.ly, d.hoa);
+	printf("\nDiem: | Toan= %1.2f | Ly= %1.2f | Hoa= %1.2f |", d.toan, d.ly, d.hoa);
+	printf("\nDiem trung binh: %1.2f",d.tb);
+	if (d.tb > 9) strcpy(d.hocluc, "Xuat xac");
+	else if (d.tb > 8) strcpy(d.hocluc, "Gioi");
+	else if (d.tb > 7) strcpy(d.hocluc, "Kha");
+	else if (d.tb > 6) strcpy(d.hocluc, "Trung binh");
+	else if (d.tb < 6) strcpy(d.hocluc, "Kem");
+	printf("\nHoc luc: %s\n",d.hocluc);
 }
 void nhapDSSV(SV *d, int *n)
 {
@@ -37,7 +45,7 @@ void nhapDSSV(SV *d, int *n)
 		printf("\nSinh vien thu %d: \n",i+1);
 		nhapSV(&d[i]);
 	}	
-	printf("\nNhap du lieu thanh cong, Enter de quay lai menu chinh");
+	printf("Nhap du lieu thanh cong, Enter de quay lai menu chinh");
 }
 void inDSSV(SV *d, int n)
 {
@@ -115,19 +123,3 @@ void lop(SV *d, int n)
 		}
 	}
 }
-void rank(SV *d, int n){
-	int i;
-	float tb=0;
-	char hocluc[10];
-	for(i=0;i<n;i++){
-		tb = (d[i].toan + d[i].ly + d[i].hoa)/3;
-		printf("\nDiem trung binh cua sinh vien %d la: %f",i+1,tb);
-		if (tb > 9) strcpy(hocluc, "Xuat xac");
-		else if (tb > 8) strcpy(hocluc, "Gioi");
-		else if (tb > 7) strcpy(hocluc, "Kha");
-		else if (tb > 6) strcpy(hocluc, "Trung binh");
-		else if (tb < 6) strcpy(hocluc, "Kem");
-		printf("\nHoc luc cua sinh vien %d la: %s\n",i+1,hocluc);
-	}
-}
-
