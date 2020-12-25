@@ -4,12 +4,12 @@ typedef struct
 {
 	char masv[15];
 	char hoten[50];
+	char noisinh[15];
+	char lop[10];
 	int gt; 
 	Date ns;
-	char hocluc[10];
-	char noisinh[50];
-	char lop[10];
 	float toan, ly, hoa,tb;
+	char hocluc[10];
 } SV;
  void nhapSV(SV *d);
  void inSV(SV d);

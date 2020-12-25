@@ -4,8 +4,8 @@
 void nhapSV(SV *d)
 {
 	fflush(stdin);
-	printf("Nhap ma sinh vien: "); gets(d->masv);
-	printf("Nhap ho ten sinh vien: "); gets(d->hoten);
+	printf("Nhap ma sinh vien: "); gets(d->masv);fflush(stdin);
+	printf("Nhap ho ten sinh vien: "); gets(d->hoten);fflush(stdin);
 	do {
 		printf("Gioi tinh: "); scanf("%d",&d->gt);
 		if(d->gt<0||d->gt>2)
@@ -13,29 +13,24 @@ void nhapSV(SV *d)
 	}while (d->gt < 0 || d->gt >2);
 	inputDate(&d->ns);
 	fflush(stdin);
-	printf("Nhap noi sinh: "); gets(d->noisinh);
-	printf("Nhap lop: "); gets(d->lop);
-	printf("Nhap diem mon toan: "); scanf("%f", &d->toan);
-	printf("Nhap diem mon ly: "); scanf("%f", &d->ly);
-	printf("Nhap diem mon hoa: "); scanf("%f", &d->hoa);
+	printf("Nhap noi sinh: "); gets(d->noisinh);fflush(stdin);
+	printf("Nhap lop: "); fflush(stdin); gets(d->lop);fflush(stdin);
+	printf("Nhap diem mon toan: "); scanf("%f", &d->toan);fflush(stdin);
+	printf("Nhap diem mon ly: "); scanf("%f", &d->ly);fflush(stdin);
+	printf("Nhap diem mon hoa: "); scanf("%f", &d->hoa);fflush(stdin);
 	d->tb=(d->toan + d->ly + d->hoa)/3;
 }
 void inSV(SV d)
 {
-	printf("\nMa sinh vien: %s", d.masv);
-	printf("\nHo ten: %s", d.hoten);
-	printf("\nGioi tinh: %s",(d.gt==0?"Nu":(d.gt==1?"Nam":(d.gt==2?"Khac":""))));
-	printf("\nNgay sinh: "); outputDate(d.ns);
-	printf("\nNoi sinh: %s", d.noisinh);
-	printf("\nLop: %s", d.lop);
-	printf("\nDiem: | Toan= %1.2f | Ly= %1.2f | Hoa= %1.2f |", d.toan, d.ly, d.hoa);
-	printf("\nDiem trung binh: %1.2f",d.tb);
-	if (d.tb > 9) strcpy(d.hocluc, "Xuat xac");
-	else if (d.tb > 8) strcpy(d.hocluc, "Gioi");
-	else if (d.tb > 7) strcpy(d.hocluc, "Kha");
-	else if (d.tb > 6) strcpy(d.hocluc, "Trung binh");
+	if (d.tb >= 9) strcpy(d.hocluc, "Xuat xac");
+	else if (d.tb >= 8) strcpy(d.hocluc, "Gioi");
+	else if (d.tb >= 7) strcpy(d.hocluc, "Kha");
+	else if (d.tb >= 6) strcpy(d.hocluc, "Trung binh");
 	else if (d.tb < 6) strcpy(d.hocluc, "Kem");
-	printf("\nHoc luc: %s\n",d.hocluc);
+	printf("\n %-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s", d.masv, d.hoten, d.noisinh, d.lop, (d.gt==0?"Nu":(d.gt==1?"Nam":(d.gt==2?"Khac":""))), d.toan, d.ly, d.hoa, d.tb, d.hocluc);
+
+	outputDate(d.ns);
+
 }
 void nhapDSSV(SV *d, int *n)
 {
@@ -51,9 +46,11 @@ void inDSSV(SV *d, int n)
 {
 	int i;
 	printf("\nDanh sach sinh vien la:\n");
+	printf("\n %-5s %-15s %-10s %-10s %-6s %-5s %-5s %-5s %-5s %-11s %-10s", "MaSV", "Ho va Ten", "Que quan", "Lop", "Sex", "Toan", "Ly", "Hoa", "TB", "Hoc luc", "Ngay sinh");
+	printf("\n--------------------------------------------------------------------------------------------------");
 	for (i=0; i<n; i++)
 	{
-		printf("\n-----Sinh vien %d-----", i+1);
+		
 		inSV(d[i]);
 	}
 }
