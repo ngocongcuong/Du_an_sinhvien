@@ -6,9 +6,9 @@ typedef struct
 	char hoten[50];
 	char noisinh[15];
 	char lop[10];
-	int gt; 
+	char gt[3]; 
 	Date ns;
-	float toan, ly, hoa,tb;
+	float toan, ly, hoa, tb;
 	char hocluc[10];
 } SV;
  void nhapSV(SV *d);
@@ -19,3 +19,5 @@ typedef struct
  void sapxep(SV *d, int n);
  void lop(SV *d, int n);
  void rank(SV *d, int n);
+ void ghifile(SV *d, int n);
+ 

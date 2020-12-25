@@ -6,31 +6,25 @@ void nhapSV(SV *d)
 	fflush(stdin);
 	printf("Nhap ma sinh vien: "); gets(d->masv);fflush(stdin);
 	printf("Nhap ho ten sinh vien: "); gets(d->hoten);fflush(stdin);
-	do {
-		printf("Gioi tinh: "); scanf("%d",&d->gt);
-		if(d->gt<0||d->gt>2)
-		printf("\nGioi tinh ko hop le, moi nhap lai");
-	}while (d->gt < 0 || d->gt >2);
+	printf("Nhap gioi tinh(nam/nu): "); gets(d->gt);fflush(stdin);
 	inputDate(&d->ns);
 	fflush(stdin);
 	printf("Nhap noi sinh: "); gets(d->noisinh);fflush(stdin);
 	printf("Nhap lop: "); fflush(stdin); gets(d->lop);fflush(stdin);
-	printf("Nhap diem mon toan: "); scanf("%f", &d->toan);fflush(stdin);
-	printf("Nhap diem mon ly: "); scanf("%f", &d->ly);fflush(stdin);
-	printf("Nhap diem mon hoa: "); scanf("%f", &d->hoa);fflush(stdin);
+	printf("Nhap diem mon toan: "); scanf("%f", &d->toan);
+	printf("Nhap diem mon ly: "); scanf("%f", &d->ly);
+	printf("Nhap diem mon hoa: "); scanf("%f", &d->hoa);
 	d->tb=(d->toan + d->ly + d->hoa)/3;
+	if (d->tb >= 9) strcpy(d->hocluc, "Xuat xac");
+	else if (d->tb >= 8) strcpy(d->hocluc, "Gioi");
+	else if (d->tb >= 7) strcpy(d->hocluc, "Kha");
+	else if (d->tb >= 6) strcpy(d->hocluc, "Trung binh");
+	else if (d->tb < 6) strcpy(d->hocluc, "Kem");
 }
 void inSV(SV d)
 {
-	if (d.tb >= 9) strcpy(d.hocluc, "Xuat xac");
-	else if (d.tb >= 8) strcpy(d.hocluc, "Gioi");
-	else if (d.tb >= 7) strcpy(d.hocluc, "Kha");
-	else if (d.tb >= 6) strcpy(d.hocluc, "Trung binh");
-	else if (d.tb < 6) strcpy(d.hocluc, "Kem");
-	printf("\n %-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s", d.masv, d.hoten, d.noisinh, d.lop, (d.gt==0?"Nu":(d.gt==1?"Nam":(d.gt==2?"Khac":""))), d.toan, d.ly, d.hoa, d.tb, d.hocluc);
-
+	printf("\n %-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s", d.masv, d.hoten, d.noisinh, d.lop, d.gt, d.toan, d.ly, d.hoa, d.tb, d.hocluc);
 	outputDate(d.ns);
-
 }
 void nhapDSSV(SV *d, int *n)
 {
@@ -120,3 +114,28 @@ void lop(SV *d, int n)
 		}
 	}
 }
+void ghifile(SV *d, int n)
+{
+	FILE *fp;
+	if((fp=fopen("fileluusinhvien.txt","a"))==NULL)
+	{printf("cannot open file");
+	exit(1);
+	}
+	int i;
+	for(i=0; i<n; i++) {
+		SV sv = d[i];
+		fprintf(fp, "%-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s %d/%d/%d\n",
+		&sv.masv, &sv.hoten, &sv.noisinh, &sv.lop, &sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, &sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
+	}
+	fclose(fp);
+}
+
+
+
+
+
+
+
+
+
+
