@@ -55,6 +55,11 @@ int main(int argc, char *argv[]) {
 				system("cls");
 				ghifile(ds, n);
 				break;
+			case 7:
+				system("cls");
+				docfile(ds, &n);
+				getch();
+				break;
 		}
 	}while (chon != 0);
 	return 0;

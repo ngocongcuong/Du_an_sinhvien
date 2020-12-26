@@ -20,4 +20,4 @@ typedef struct
  void lop(SV *d, int n);
  void rank(SV *d, int n);
  void ghifile(SV *d, int n);
- 
+ void docfile(SV *d, int *n);

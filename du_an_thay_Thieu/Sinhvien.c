@@ -125,9 +125,28 @@ void ghifile(SV *d, int n)
 	for(i=0; i<n; i++) {
 		SV sv = d[i];
 		fprintf(fp, "%-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s %d/%d/%d\n",
-		&sv.masv, &sv.hoten, &sv.noisinh, &sv.lop, &sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, &sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
+		sv.masv, sv.hoten, sv.noisinh, sv.lop, sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
 	}
 	fclose(fp);
+}
+docfile(SV *d, int *n)
+{
+	FILE *fp = fopen("fileluusinhvien.txt", "r");
+	int i=0;
+	if(fp) {
+		for(;;) {
+			SV sv;
+			fscanf(fp, "%5s %15s %10s %10s %6s %5f %5f %5f %5f %12s %d%d%d\n",
+			&sv.masv, &sv.hoten, &sv.noisinh, &sv.lop, &sv.gt, &sv.toan, &sv.ly, &sv.hoa, &sv.tb, &sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
+			
+			d[i++]=sv;
+			if(feof(fp)) {
+				break;
+			}
+		}
+	}
+	fclose(fp);
+	*n =i;
 }
 
 
