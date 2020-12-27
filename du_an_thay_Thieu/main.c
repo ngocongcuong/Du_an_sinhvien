@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 		printf("\n4. Hien thi danh sach theo diem tu cao xuong thap");
 		printf("\n5. Hien thi danh sach sinh vien theo lop");
 		printf("\n6. Luu file sinhvien.txt");
-		printf("\n7. Doc file sinhvien.txt")
+		printf("\n7. Doc file sinhvien.txt");
 		printf("\n0. Thoat");
 		printf("\n---------------------");
 		printf("\nBan hay chon 1 cong viec: "); scanf("%d", &chon);
