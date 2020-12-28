@@ -5,7 +5,9 @@ void nhapSV(SV *d)
 {
 	fflush(stdin);
 	printf("Nhap ma sinh vien: "); gets(d->masv);fflush(stdin);
-	printf("Nhap ho ten sinh vien: "); gets(d->hoten);fflush(stdin);
+	printf("Nhap ho sinh vien: "); gets(d->ho);fflush(stdin);
+	printf("Nhap ten dem sinh vien: "); gets(d->dem);fflush(stdin);
+	printf("Nhap ten sinh vien: "); gets(d->ten);fflush(stdin);
 	printf("Nhap gioi tinh(nam/nu): "); gets(d->gt);fflush(stdin);
 	inputDate(&d->ns);
 	fflush(stdin);
@@ -18,12 +20,12 @@ void nhapSV(SV *d)
 	if (d->tb >= 9) strcpy(d->hocluc, "Xuat xac");
 	else if (d->tb >= 8) strcpy(d->hocluc, "Gioi");
 	else if (d->tb >= 7) strcpy(d->hocluc, "Kha");
-	else if (d->tb >= 6) strcpy(d->hocluc, "Trung binh");
+	else if (d->tb >= 6) strcpy(d->hocluc, "Trungbinh");
 	else if (d->tb < 6) strcpy(d->hocluc, "Kem");
 }
 void inSV(SV d)
 {
-	printf("\n %-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s", d.masv, d.hoten, d.noisinh, d.lop, d.gt, d.toan, d.ly, d.hoa, d.tb, d.hocluc);
+	printf("\n %-5s %-6s %-6s %-6s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s", d.masv, d.ho, d.dem, d.ten, d.noisinh, d.lop, d.gt, d.toan, d.ly, d.hoa, d.tb, d.hocluc);
 	outputDate(d.ns);
 }
 void nhapDSSV(SV *d, int *n)
@@ -40,7 +42,7 @@ void inDSSV(SV *d, int n)
 {
 	int i;
 	printf("\nDanh sach sinh vien la:\n");
-	printf("\n %-5s %-15s %-10s %-10s %-6s %-5s %-5s %-5s %-5s %-11s %-10s", "MaSV", "Ho va Ten", "Que quan", "Lop", "Sex", "Toan", "Ly", "Hoa", "TB", "Hoc luc", "Ngay sinh");
+	printf("\n %-5s %-6s %-6s %-6s %-10s %-10s %-6s %-5s %-5s %-5s %-5s %-11s %-10s", "MaSV", "Ho", "Dem", "Ten", "Que quan", "Lop", "Sex", "Toan", "Ly", "Hoa", "TB", "Hoc luc", "Ngay sinh");
 	printf("\n--------------------------------------------------------------------------------------------------");
 	for (i=0; i<n; i++)
 	{
@@ -117,15 +119,15 @@ void lop(SV *d, int n)
 void ghifile(SV *d, int n)
 {
 	FILE *fp;
-	if((fp=fopen("fileluusinhvien.txt","a"))==NULL)
+	if((fp=fopen("fileluusinhvien.txt", "a"))==NULL)
 	{printf("cannot open file");
 	exit(1);
 	}
 	int i;
 	for(i=0; i<n; i++) {
 		SV sv = d[i];
-		fprintf(fp, "%-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s %d/%d/%d\n",
-		sv.masv, sv.hoten, sv.noisinh, sv.lop, sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
+		fprintf(fp, "%-5s%-6s%-6s%-6s%-10s%-10s%-6s%-5.2f%-5.2f%-5.2f%-5.2f%-12s%-2d %-2d %-4d\n",
+		sv.masv, sv.ho, sv.dem, sv.ten, sv.noisinh, sv.lop, sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
 	}
 	fclose(fp);
 }
@@ -136,8 +138,8 @@ docfile(SV *d, int *n)
 	if(fp) {
 		for(;;) {
 			SV sv;
-			fscanf(fp, "%5s %15s %10s %10s %6s %5f %5f %5f %5f %12s %d%d%d\n",
-			&sv.masv, &sv.hoten, &sv.noisinh, &sv.lop, &sv.gt, &sv.toan, &sv.ly, &sv.hoa, &sv.tb, &sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
+			fscanf(fp, "%5s %6s %6s %6s %10s %10s %6s %5f %5f %5f %5f %12s %2d %2d %4d\n",
+			&sv.masv, &sv.ho, &sv.dem, &sv.ten, &sv.noisinh, &sv.lop, &sv.gt, &sv.toan, &sv.ly, &sv.hoa, &sv.tb, &sv.hocluc, &sv.ns.day, &sv.ns.month, &sv.ns.year);
 			
 			d[i++]=sv;
 			if(feof(fp)) {

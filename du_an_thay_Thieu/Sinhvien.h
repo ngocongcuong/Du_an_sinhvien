@@ -3,13 +3,15 @@
 typedef struct
 {
 	char masv[15];
-	char hoten[50];
-	char noisinh[15];
-	char lop[10];
-	char gt[3]; 
+	char ho[20];
+	char dem[20];
+	char ten[20];
+	char noisinh[30];
+	char lop[30];
+	char gt[10]; 
 	Date ns;
 	float toan, ly, hoa, tb;
-	char hocluc[10];
+	char hocluc[30];
 } SV;
  void nhapSV(SV *d);
  void inSV(SV d);
