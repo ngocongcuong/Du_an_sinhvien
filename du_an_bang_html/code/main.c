@@ -7,7 +7,6 @@
 int main(int argc, char *argv[]) {
 	int chon, n;
 	SV ds[100];
-	docfile(ds, &n);
 	do{
 		system("cls");
 		printf("\n--------MENU---------");
@@ -60,10 +59,8 @@ int main(int argc, char *argv[]) {
 			case 7:
 				system("cls");
 				docfile(ds, &n);
-				inDSSV(ds, n);
 				getch();
 				break;
-
 		}
 	}while (chon != 0);
 	return 0;

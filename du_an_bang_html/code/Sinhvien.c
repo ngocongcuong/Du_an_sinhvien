@@ -5,7 +5,7 @@ void nhapSV(SV *d)
 {
 	fflush(stdin);
 	printf("Nhap ma sinh vien: "); gets(d->masv);fflush(stdin);
-	printf("Nhap ho ten sinh vien: "); gets(d->ten);fflush(stdin);
+	printf("Nhap ho ten sinh vien: "); gets(d->hoten);fflush(stdin);
 	printf("Nhap gioi tinh(nam/nu): "); gets(d->gt);fflush(stdin);
 	inputDate(&d->ns);
 	fflush(stdin);
@@ -23,7 +23,7 @@ void nhapSV(SV *d)
 }
 void inSV(SV d)
 {
-	printf("\n %-5s %-25s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-6.2f%-12s", d.masv, d.ten, d.noisinh, d.lop, d.gt, d.toan, d.ly, d.hoa, d.tb, d.hocluc);
+	printf("\n %-5s %-15s %-10s %-10s %-6s %-5.2f %-5.2f %-5.2f %-5.2f %-12s", d.masv, d.hoten, d.noisinh, d.lop, d.gt, d.toan, d.ly, d.hoa, d.tb, d.hocluc);
 	outputDate(d.ns);
 }
 void nhapDSSV(SV *d, int *n)
@@ -40,8 +40,8 @@ void inDSSV(SV *d, int n)
 {
 	int i;
 	printf("\nDanh sach sinh vien la:\n");
-	printf("\n %-5s %-25s %-10s %-10s %-6s %-5s %-5s %-5s %-5s %-11s %-10s", "MaSV", "Ho va ten", "Que quan", "Lop", "Sex", "Toan", "Ly", "Hoa", "TB", "Hoc luc", "Ngay sinh");
-	printf("\n-------------------------------------------------------------------------------------------------------------");
+	printf("\n %-5s %-15s %-10s %-10s %-6s %-5s %-5s %-5s %-5s %-11s %-10s", "MaSV", "Ho va Ten", "Que quan", "Lop", "Sex", "Toan", "Ly", "Hoa", "TB", "Hoc luc", "Ngay sinh");
+	printf("\n--------------------------------------------------------------------------------------------------");
 	for (i=0; i<n; i++)
 	{
 		
@@ -117,31 +117,30 @@ void lop(SV *d, int n)
 void ghifile(SV *d, int n)
 {
 	FILE *fp;
-	if((fp=fopen("fileluusinhvien.txt", "a"))==NULL)
+	if((fp=fopen("fileluusinhvien.txt","a"))==NULL)
 	{printf("cannot open file");
 	exit(1);
 	}
 	int i;
 	for(i=0; i<n; i++) {
 		SV sv = d[i];
-		fprintf(fp, "%-5s%-10s%-6s%-5.2f%-5.2f%-5.2f%-5.2f%-2d %-2d %-4d\n%-25s%-10s%-12s\n",
-		sv.masv, sv.lop, sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, sv.ns.day, sv.ns.month, sv.ns.year, sv.ten, sv.noisinh, sv.hocluc);
+		fprintf(fp, "%-5s %-15s %-10s %-10s %1s %-5.2f %-5.2f %-5.2f %-5.2f %10s %d/%d/%d\n",
+		sv.masv, sv.hoten, sv.noisinh, sv.lop, sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, sv.hocluc, sv.ns.day, sv.ns.month, sv.ns.year);
 	}
 	fclose(fp);
 }
 void docfile(SV *d, int *n)
 {
+	char buff[5];
 	FILE *fp = fopen("fileluusinhvien.txt", "r");
 	int i=0;
 	if(fp) {
 		for(;;) {
 			SV sv;
-			fscanf(fp, "%5s %10s %6s %5f %5f %5f %5f %2d %2d %4d\n",
-			&sv.masv, &sv.lop, &sv.gt, &sv.toan, &sv.ly, &sv.hoa, &sv.tb, &sv.ns.day, &sv.ns.month, &sv.ns.year);
-			fgets(sv.ten, 26, fp);
-			fgets(sv.noisinh, 11, fp);
-			fgets(sv.hocluc, 13, fp);
-			
+			fscanf(fp,"%s",buff);
+			printf("%s",buff);
+			fgets(buff,3,(FILE*)fp);
+			printf("%s",buff);
 			if(feof(fp)) {
 				break;
 			}

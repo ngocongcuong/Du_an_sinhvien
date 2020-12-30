@@ -1,2 +1,4 @@
-sv5  cao   thi   thuongnghean    dh0820c   nu    6.00 7.00 8.00 7.00 Kha         4  5  2002
-sv2  ngo   thi   mai   hanoi     dh0820c   nu    6.00 7.00 8.00 7.00 Kha         5  5  2000
+sv20 lt0820c   nam   6.00 7.00 8.00 7.00 4  4  1993
+ngo cong cuong           bac ninh  Kha         
+sv30 dh0820c   nu    9.00 9.00 9.00 9.00 4  5  1998
+nguyen thi mai anh       ha noi    Xuat xac    
