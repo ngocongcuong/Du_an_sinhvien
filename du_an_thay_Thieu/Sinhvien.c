@@ -124,7 +124,7 @@ void ghifile(SV *d, int n)
 	int i;
 	for(i=0; i<n; i++) {
 		SV sv = d[i];
-		fprintf(fp, "%-5s%-10s%-6s%-5.2f%-5.2f%-5.2f%-5.2f%-2d %-2d %-4d\n%-25s%-10s%-12s\n",
+		fprintf(fp, "%-5s%-10s%-6s%-5.2f%-5.2f%-5.2f%-5.2f%-2d %-2d %-4d%-25s%-10s%-12s\n",
 		sv.masv, sv.lop, sv.gt, sv.toan, sv.ly, sv.hoa, sv.tb, sv.ns.day, sv.ns.month, sv.ns.year, sv.ten, sv.noisinh, sv.hocluc);
 	}
 	fclose(fp);
@@ -136,7 +136,7 @@ void docfile(SV *d, int *n)
 	if(fp) {
 		for(;;) {
 			SV sv;
-			fscanf(fp, "%5s %10s %6s %5f %5f %5f %5f %2d %2d %4d\n",
+			fscanf(fp, "%5s %10s %6s %5f %5f %5f %5f %2d %2d %4d",
 			&sv.masv, &sv.lop, &sv.gt, &sv.toan, &sv.ly, &sv.hoa, &sv.tb, &sv.ns.day, &sv.ns.month, &sv.ns.year);
 			fgets(sv.ten, 26, fp);
 			fgets(sv.noisinh, 11, fp);
